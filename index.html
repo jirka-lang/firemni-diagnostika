@@ -59,9 +59,10 @@ a,button,[role="button"]{cursor:pointer;}
 .btn-secondary{background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);padding:14px 32px;border-radius:6px;text-decoration:none;font-size:16px;font-weight:500;border:1px solid rgba(255,255,255,.12);transition:all .2s;display:inline-block;}
 .btn-secondary:hover{background:rgba(255,255,255,.14);color:#fff;}
 .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.stat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:24px 16px;text-align:center;transition:background .2s;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.stat:hover{background:rgba(255,255,255,.08);}
-.stat-val{font-family:'Source Serif 4',serif;font-size:clamp(20px, 2vw, 30px);font-weight:600;color:#fff;line-height:1.1;}
+.stat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:24px 16px;text-align:center;transition:all .3s cubic-bezier(.25,.46,.45,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.stat:hover{background:rgba(255,255,255,.12);transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.2);border-color:rgba(212,114,42,.35);}
+.stat:hover .stat-val{color:var(--copper);}
+.stat-val{font-family:'Source Serif 4',serif;font-size:clamp(20px, 2vw, 30px);font-weight:600;color:#fff;line-height:1.1;transition:color .3s;}
 .stat-label{font-size:13px;color:rgba(255,255,255,.45);margin-top:8px;line-height:1.3;}
 
 /* SECTIONS */
@@ -76,19 +77,22 @@ a,button,[role="button"]{cursor:pointer;}
 
 /* PROBLEMS */
 .problems-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-.problem-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:32px 28px;position:relative;border-top:3px solid var(--border);transition:box-shadow .2s;}
-.problem-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.06);}
-.problem-icon{width:48px;height:48px;background:var(--copper-bg);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
-.problem-card h3{font-size:18px;font-weight:700;font-family:'DM Sans',sans-serif;color:var(--ink);margin-bottom:10px;}
-.problem-card p{font-size:15px;color:var(--muted);line-height:1.55;}
+.problem-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:36px 30px;position:relative;border-top:3px solid var(--border);transition:all .3s cubic-bezier(.25,.46,.45,.94);}
+.problem-card:hover{box-shadow:0 12px 32px rgba(0,0,0,.1);transform:translateY(-6px);border-top-color:var(--copper);}
+.problem-icon{width:52px;height:52px;background:var(--copper-bg);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;transition:all .3s;}
+.problem-card:hover .problem-icon{background:var(--copper);} .problem-card:hover .problem-icon svg{stroke:#fff;}
+.problem-card h3{font-size:21px;font-weight:700;font-family:'DM Sans',sans-serif;color:var(--ink);margin-bottom:12px;}
+.problem-card p{font-size:16px;color:var(--muted);line-height:1.6;}
 
 /* FEATURES */
 .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-.feature-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:32px 28px;border-left:4px solid var(--copper);transition:all .25s;}
-.feature-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.08);transform:translateY(-3px);}
-.feature-icon{width:48px;height:48px;background:var(--navy);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.feature-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:32px 28px;border-left:4px solid var(--copper);transition:all .3s cubic-bezier(.25,.46,.45,.94);}
+.feature-card:hover{box-shadow:0 12px 32px rgba(0,0,0,.12);transform:translateY(-6px);border-left-width:6px;}
+.feature-card:hover .feature-icon{background:var(--copper);transform:scale(1.1);}
+.feature-card:hover h3{color:var(--copper);}
+.feature-icon{width:48px;height:48px;background:var(--navy);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;transition:all .3s;}
 .feature-icon svg{width:22px;height:22px;}
-.feature-card h3{font-size:18px;font-weight:700;font-family:'DM Sans',sans-serif;color:var(--navy);margin-bottom:8px;}
+.feature-card h3{font-size:18px;font-weight:700;font-family:'DM Sans',sans-serif;color:var(--navy);margin-bottom:8px;transition:color .3s;}
 .feature-card p{font-size:15px;color:var(--muted);line-height:1.55;}
 .feature-tag{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--copper);background:var(--copper-bg);border:1px solid var(--copper-border);padding:3px 10px;border-radius:4px;margin-bottom:12px;}
 
@@ -102,11 +106,13 @@ a,button,[role="button"]{cursor:pointer;}
 
 /* VYSTUPY — 2x2 */
 .vystupy-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-.vystup-item{display:flex;gap:16px;padding:24px;background:var(--white);border:1px solid var(--border);border-radius:12px;border-left:4px solid var(--navy);transition:box-shadow .2s;}
-.vystup-item:hover{box-shadow:0 4px 16px rgba(0,0,0,.06);}
-.vystup-icon{width:42px;height:42px;min-width:42px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.vystup-item{display:flex;gap:16px;padding:24px;background:var(--white);border:1px solid var(--border);border-radius:12px;border-left:4px solid var(--navy);transition:all .3s cubic-bezier(.25,.46,.45,.94);}
+.vystup-item:hover{box-shadow:0 12px 32px rgba(0,0,0,.1);transform:translateY(-5px);border-left-color:var(--copper);}
+.vystup-item:hover .vystup-icon{background:var(--copper);}
+.vystup-item:hover h3{color:var(--copper);}
+.vystup-icon{width:42px;height:42px;min-width:42px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .3s;}
 .vystup-icon svg{width:20px;height:20px;}
-.vystup-item h3{font-size:17px;font-weight:700;font-family:'DM Sans',sans-serif;color:var(--navy);margin-bottom:6px;}
+.vystup-item h3{font-size:17px;font-weight:700;font-family:'DM Sans',sans-serif;color:var(--navy);margin-bottom:6px;transition:color .3s;}
 .vystup-item p{font-size:15px;color:var(--muted);line-height:1.5;}
 
 /* CTA */
@@ -244,8 +250,8 @@ body.menu-open{overflow:hidden;}
     <div class="hero-grid">
       <div>
         <div class="hero-eyebrow">Firemní diagnostika · AB ANTE</div>
-        <h1>Ekonomika firmy neroste? Ukážeme vám <em>proč — a co s tím.</em></h1>
-        <p class="hero-sub">Nezávislá provozní a ekonomická diagnostika pro majitele malých a středních firem. Pojmenujeme příčiny, zmapujeme rizika a navrhneme konkrétní opatření.</p>
+        <h1>Něco ve firmě nesedí? Firma běží, ale nemáte <em>jistotu</em>, že správným <em>směrem</em>?</h1>
+        <p class="hero-sub">Pojmenujeme proč — a navrhneme <em>co s tím.</em> Nezávislá provozní a ekonomická diagnostika pro majitele malých a středních firem.</p>
         <div class="hero-actions">
           <a href="#kontakt" class="btn-primary">Domluvit konzultaci →</a>
           <a href="#jak-to-funguje" class="btn-secondary">Jak diagnostika probíhá</a>
@@ -277,29 +283,29 @@ body.menu-open{overflow:hidden;}
 <section class="section" id="problem">
   <div class="container">
     <div class="section-eyebrow">Současný stav</div>
-    <h2>Tušíte to, ale nevidíte příčiny</h2>
-    <p class="section-sub">Firma funguje, ale ekonomika dlouhodobě neroste nebo se zhoršuje. Majitel problém většinou tuší — ale protože je denně v provozu, nedokáže pojmenovat příčiny.</p>
+    <h2>Řídíte firmu — ale vidíte celý obrázek?</h2>
+    <p class="section-sub">Jste v provozu každý den a nemáte odstup. Nebo naopak — nejste přítomni denně a potřebujete vědět, co se pod povrchem děje. V obou případech chybí totéž: nezávislý pohled na to, jak firma funguje, kde ztrácí a kde má prostor se zlepšit.</p>
     <div class="problems-grid">
-      <div class="problem-card">
-        <div class="problem-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4722A" stroke-width="2" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-        </div>
-        <h3>Marže klesají, náklady rostou</h3>
-        <p>Zákazníků ubývá nebo se mění, co a za kolik kupují. Náklady rostou — a není jasné proč.</p>
-      </div>
       <div class="problem-card">
         <div class="problem-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4722A" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         </div>
-        <h3>Rozhodování bez podkladů</h3>
-        <p>Chybí systematický přehled o závazcích, cash flow a nákladové struktuře. Závazky se platí pozdě, cash flow stačí na měsíc dva dopředu.</p>
+        <h3>Něco nesedí, ale nevíte co</h3>
+        <p>Ekonomika stagnuje nebo se zhoršuje. Čísla neodpovídají pocitu. Příčina není vidět zevnitř.</p>
       </div>
       <div class="problem-card">
         <div class="problem-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4722A" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4722A" stroke-width="2" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
         </div>
-        <h3>Čas běží — prostor se zmenšuje</h3>
-        <p>Čím déle čekáte, tím méně možností. Diagnostika má největší hodnotu právě v okně mezi tušením a krizí.</p>
+        <h3>Informace máte — nezávislý pohled ne</h3>
+        <p>Znáte svou firmu líp než kdokoliv. Ale právě proto některé věci přehlédnete — chybí někdo, kdo se podívá zvnějšku.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4722A" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <h3>Firma funguje — ale mohla by líp</h3>
+        <p>Nemusí jít o krizi. Chcete optimalizovat provoz, ověřit směr nebo se připravit na změnu.</p>
       </div>
     </div>
   </div>
@@ -310,7 +316,7 @@ body.menu-open{overflow:hidden;}
   <div class="container">
     <div class="section-eyebrow">Co analyzujeme</div>
     <h2>Pět modulů od provozních dat po konkrétní kroky</h2>
-    <p class="section-sub">Každá firma je jiná. Nepracujeme podle šablon. Nejdřív pochopíme konkrétní podmínky a dynamiku provozu — teprve na základě toho stavíme analýzu a doporučení.</p>
+    <p class="section-sub">Každá firma je jiná. My jsme flexibilní. Nepracujeme podle šablon. Nejdřív pochopíme konkrétní podmínky a dynamiku provozu — a na základě toho stavíme analýzu a doporučení.</p>
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-tag">Jádro</div>
@@ -347,7 +353,7 @@ body.menu-open{overflow:hidden;}
   <div class="container">
     <div class="section-eyebrow">Průběh</div>
     <h2>Od prvního kontaktu k rozhodnutí</h2>
-    <p class="section-sub">Doba závisí na rozsahu — od dvou týdnů u menších firem po několik týdnů u složitějších případů.</p>
+    <p class="section-sub">Doba závisí na rozsahu.</p>
     <div class="steps-grid">
       <div class="step-card">
         <div class="step-num">1</div>
@@ -360,7 +366,7 @@ body.menu-open{overflow:hidden;}
         <div class="step-num">2</div>
         <div>
           <h3>Sběr dat a analýza</h3>
-          <p>Klient předá podklady. Paralelně zajistíme veřejné registry. Křížová kontrola provozních dat s veřejnými zdroji.</p>
+          <p>Klient předá podklady. Paralelně zajistíme veřejné registry. Jakmile máme data pohromadě, spustíme samotnou analýzu.</p>
         </div>
       </div>
       <div class="step-card">
