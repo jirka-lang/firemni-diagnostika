@@ -132,6 +132,7 @@ a,button,[role="button"]{cursor:pointer;}
 .nav-toggle svg{width:24px;height:24px;stroke:var(--navy);stroke-width:2;}
 .nav-links.open{display:flex !important;animation:fadeIn .2s ease-out;}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+body.menu-open{overflow:hidden;}
 
 /* RESPONSIVE — TABLET */
 @media(max-width:960px){
@@ -143,19 +144,10 @@ a,button,[role="button"]{cursor:pointer;}
   .hero-stats{grid-template-columns:repeat(4,1fr);gap:10px;}
   .problems-grid{grid-template-columns:1fr 1fr;gap:12px;}
   .features-grid{grid-template-columns:1fr 1fr;gap:12px;}
-  .steps-grid{grid-template-columns:repeat(4,1fr);gap:16px;}
+  .steps-grid{grid-template-columns:repeat(2,1fr);gap:16px;}
   .steps-grid::before{display:none;}
   .vystupy-grid{grid-template-columns:1fr;}
   .section{padding:60px 0;}
-  .nav-links{display:none;}
-  .nav-toggle{display:flex;}
-}
-
-/* RESPONSIVE — MOBILE */
-@media(max-width:640px){
-  .container{padding:0 16px;}
-  .nav-inner{padding:14px 16px;}
-  .nav-logo{height:28px;}
   .nav-links{
     display:none;
     position:fixed;top:0;left:0;right:0;bottom:0;
@@ -164,8 +156,20 @@ a,button,[role="button"]{cursor:pointer;}
     gap:24px;z-index:200;
   }
   .nav-links a{font-size:18px;color:rgba(255,255,255,.8);}
-  .nav-links .nav-cta{font-size:16px;padding:12px 32px;}
-  .nav-toggle{z-index:300;}
+  .nav-links a:hover{color:#fff;}
+  .nav-links a.nav-cta{background:var(--copper);color:#fff;padding:12px 32px;}
+  .nav-toggle{display:flex;z-index:300;}
+  .nav-links.open ~ .nav-toggle svg{stroke:#fff;}
+}
+
+/* RESPONSIVE — MOBILE */
+@media(max-width:640px){
+  .container{padding:0 16px;}
+  .nav-inner{padding:14px 16px;}
+  .nav-logo{height:28px;}
+  .nav-links{gap:20px;}
+  .nav-links a{font-size:17px;}
+  .nav-links a.nav-cta{font-size:15px;padding:12px 28px;}
   .hero{padding:100px 0 48px;}
   .hero h1{font-size:28px;line-height:1.15;}
   .hero-sub{font-size:14px;}
@@ -463,6 +467,7 @@ a,button,[role="button"]{cursor:pointer;}
   function setMenuState(open){
     menuOpen=open;
     links.classList.toggle('open',open);
+    document.body.classList.toggle('menu-open',open);
     iconHamburger.style.display=open?'none':'block';
     iconClose.style.display=open?'block':'none';
   }

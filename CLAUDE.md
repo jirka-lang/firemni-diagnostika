@@ -10,7 +10,7 @@ This file provides guidance to Claude Code when working with code in this reposi
 
 ## Stack
 
-Static HTML/CSS/JS — no framework, no build step. Deployed on Vercel via GitHub auto-deploy.
+Static HTML/CSS/JS — no framework, no build step. Dual deploy: Vercel (auto-deploy via GitHub) + FORPSI FTP (production domain).
 
 ## Design System
 
@@ -22,7 +22,7 @@ Identical to `krizova-diagnostika.vercel.app` (AB ANTE corporate brand).
 - **Typography:** Fluid via `clamp()` — H1 scales 36–72px, H2 scales 28–42px
 - **Container:** 1400px max-width (1600px for nav)
 - **Pattern:** Trust & Authority — clean, minimal, professional B2B
-- **Responsive:** 3 breakpoints (desktop, tablet 960px, mobile 640px)
+- **Responsive:** 3 breakpoints (desktop, tablet 960px, mobile 640px). Mobile menu uses fullscreen navy overlay with scroll lock (`body.menu-open`). Close icon turns white via `.nav-links.open ~ .nav-toggle svg{stroke:#fff}`.
 - **CTA buttons:** Always white text (`#fff`) on copper background. Use `.nav-links a.nav-cta` (not just `.nav-cta`) to override `.nav-links a` specificity. This is a recurring bug — `.nav-links a` sets `color:var(--muted)` which overrides `.nav-cta` if specificity is not high enough.
 
 ## Files
@@ -31,14 +31,27 @@ Identical to `krizova-diagnostika.vercel.app` (AB ANTE corporate brand).
 |------|---------|
 | `index.html` | Production landing page |
 | `ab-ante-logo.png` | AB ANTE logo |
+| `redirect-index.html` | Root domain redirect (uploaded to FTP root as index.html) |
 
 ## Deploy
+
+### Vercel (preview/staging)
 
 ```bash
 git push  # auto-deploys to Vercel
 ```
 
 URL: `firemni-diagnostika.vercel.app`
+
+### FORPSI FTP (production domain)
+
+```bash
+lftp -u ab_antecz,HESLO d112wh.forpsi.com -e "set ssl:verify-certificate no; cd diagnostika; put index.html; put ab-ante-logo.png; ls; bye"
+```
+
+URL: `https://www.ab-ante.cz/diagnostika/`
+
+FTP details and full procedure documented in `../nasazeni na web_ftp/readme.md`.
 
 ## Content — Provozni a ekonomicka diagnostika firmy
 
