@@ -23,6 +23,7 @@ Identical to `krizova-diagnostika.vercel.app` (AB ANTE corporate brand).
 - **Container:** 1400px max-width (1600px for nav)
 - **Pattern:** Trust & Authority — clean, minimal, professional B2B
 - **Responsive:** 3 breakpoints (desktop, tablet 960px, mobile 640px)
+- **CTA buttons:** Always white text (`#fff`) on copper background. Use `.nav-links a.nav-cta` (not just `.nav-cta`) to override `.nav-links a` specificity. This is a recurring bug — `.nav-links a` sets `color:var(--muted)` which overrides `.nav-cta` if specificity is not high enough.
 
 ## Files
 
