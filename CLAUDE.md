@@ -60,7 +60,7 @@ Source document: `AB_ANTE_firemni diagnostika_260324_v2.docx`
 - **H1:** Ekonomika firmy neroste? *Ukazeme vam proc — a co s tim.*
 - **Subheadline:** Nezavisla provozni a ekonomicka diagnostika pro majitele malych a strednich firem. Pojmenujeme priciny, zmapujeme rizika a navrhneme konkretni opatreni.
 - **CTA:** Domluvit konzultaci → / Jak diagnostika probiha
-- **Stats (4 boxy):** NDA (duvěrnost od prvniho kontaktu) | Data + expert (AI analyza, lidska interpretace) | Nezavisly pohled (diagnostika zvenčí, bez vazeb) | Bez sablon (kazda firma individualne)
+- **Stats (4 boxy):** Data + expert (AI analyza, interpretace experta) | Nezavisly pohled (Diagnostika zalozena na datech) | NDA (duvernost od prvniho kontaktu) | Individualni pristup (rozsah podle potreb, na miru)
 
 ### SEKCE: PROBLEM (id="problem")
 
@@ -105,7 +105,8 @@ Cenu stanovujeme individualne podle realneho rozsahu sluzeb a potreb. Vzdy prede
 ### SEKCE: CTA / KONTAKT (id="kontakt")
 
 - **H2:** Domluvit konzultaci
-- **CTA:** mailto:info@ab-ante.cz
+- **CTA:** Napiste nam → mailto:jirka@ab-ante.cz
+- **Cena:** Normalni text (ne italic). "Cenu stanovujeme individualne podle realneho rozsahu sluzeb a konkretnich potreb firmy."
 
 ## Contact
 
