@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Firemni diagnostika — AB ANTE</title>
+<meta name="description" content="Nezavisla provozni a ekonomicka diagnostika pro majitele malych a strednich firem. Pojmenujeme priciny, zmapujeme rizika a navrhneme konkretni opatreni.">
+<meta property="og:title" content="Firemni diagnostika — AB ANTE">
+<meta property="og:description" content="Ekonomika firmy neroste? Ukazeme vam proc — a co s tim. Nezavisla diagnostika pro majitele MSP.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1A2E4A;--navy-light:#243D5C;--navy-dark:#0F1E33;
+  --copper:#D4722A;--copper-hover:#C0621E;--copper-bg:rgba(212,114,42,.06);--copper-border:rgba(212,114,42,.15);
+  --cream:#FAFAF8;--sand:#F4F2EE;
+  --ink:#1A1A2E;--ink2:#3D3D56;--muted:#6E6E82;--border:#E2E0DC;
+  --white:#FFFFFF;
+  --max-w:1400px;
+  --pad:clamp(20px, 4vw, 64px);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{animation-duration:0.01ms !important;transition-duration:0.01ms !important;}}
+body{font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(--cream);-webkit-font-smoothing:antialiased;line-height:1.6;font-size:16px;}
+h1,h2,h3{font-family:'Source Serif 4',Georgia,serif;font-weight:400;}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 var(--pad);}
+.container-wide{max-width:1600px;margin:0 auto;padding:0 var(--pad);}
+img{max-width:100%;height:auto;}
+a:focus-visible,button:focus-visible{outline:2px solid var(--copper);outline-offset:2px;border-radius:4px;}
+.skip-link{position:absolute;top:-100%;left:16px;background:var(--copper);color:#fff;padding:8px 16px;border-radius:4px;z-index:999;font-size:14px;font-weight:600;text-decoration:none;}
+.skip-link:focus{top:8px;}
+a,button,[role="button"]{cursor:pointer;}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);box-shadow:0 1px 0 var(--border);transition:box-shadow .3s;}
+.nav.scrolled{box-shadow:0 1px 12px rgba(0,0,0,.1);}
+.nav-inner{max-width:1600px;margin:0 auto;padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{height:42px;}
+.nav-links{display:flex;gap:32px;align-items:center;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:15px;font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:var(--navy);}
+.nav-cta{background:var(--copper);color:#fff;padding:10px 24px;border-radius:6px;text-decoration:none;font-size:15px;font-weight:600;transition:background .2s;}
+.nav-cta:hover{background:var(--copper-hover);}
+
+/* HERO */
+.hero{background:var(--navy);padding:140px 0 80px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:0;right:0;width:50%;height:100%;background:linear-gradient(135deg,transparent 0%,rgba(212,114,42,.04) 100%);pointer-events:none;}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:rgba(255,255,255,.06);}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center;}
+.hero-eyebrow{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--copper);font-weight:700;margin-bottom:20px;}
+.hero h1{font-size:clamp(36px, 4.5vw, 72px);line-height:1.02;color:#fff;margin-bottom:24px;font-weight:400;}
+.hero h1 em{font-style:normal;color:var(--copper);}
+.hero-sub{font-size:clamp(15px, 1.3vw, 19px);color:rgba(255,255,255,.55);line-height:1.6;margin-bottom:36px;max-width:520px;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-primary{background:var(--copper);color:#fff;padding:14px 32px;border-radius:6px;text-decoration:none;font-size:16px;font-weight:600;transition:all .2s;display:inline-block;}
+.btn-primary:hover{background:var(--copper-hover);transform:translateY(-1px);box-shadow:0 4px 12px rgba(212,114,42,.3);}
+.btn-secondary{background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);padding:14px 32px;border-radius:6px;text-decoration:none;font-size:16px;font-weight:500;border:1px solid rgba(255,255,255,.12);transition:all .2s;display:inline-block;}
+.btn-secondary:hover{background:rgba(255,255,255,.14);color:#fff;}
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.stat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:24px 16px;text-align:center;transition:background .2s;}
+.stat:hover{background:rgba(255,255,255,.08);}
+.stat-val{font-family:'Source Serif 4',serif;font-size:clamp(20px, 2vw, 30px);font-weight:600;color:#fff;line-height:1.1;}
+.stat-label{font-size:13px;color:rgba(255,255,255,.45);margin-top:8px;line-height:1.3;}
+
+/* SECTIONS */
+.section{padding:clamp(48px, 6vw, 80px) 0;}
+.section.alt{background:var(--sand);}
+.section.navy{background:var(--navy);color:#fff;}
+.section-eyebrow{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--copper);font-weight:700;margin-bottom:14px;}
+.section h2{font-size:clamp(28px, 3vw, 42px);line-height:1.12;color:var(--navy);margin-bottom:16px;font-weight:400;}
+.section.navy h2{color:#fff;}
+.section-sub{font-size:clamp(15px, 1.2vw, 18px);color:var(--muted);max-width:680px;margin-bottom:40px;line-height:1.65;}
+.section.navy .section-sub{color:rgba(255,255,255,.5);}
+
+/* PROBLEMS */
+.problems-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.problem-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:32px 28px;position:relative;border-top:3px solid var(--border);transition:box-shadow .2s;}
+.problem-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.06);}
+.problem-icon{width:48px;height:48px;background:var(--copper-bg);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+.problem-card h3{font-size:18px;font-weight:700;font-family:'DM Sans',sans-serif;color:var(--ink);margin-bottom:10px;}
+.problem-card p{font-size:15px;color:var(--muted);line-height:1.55;}
+
+/* FEATURES */
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.feature-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:32px 28px;border-left:4px solid var(--copper);transition:all .25s;}
+.feature-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.08);transform:translateY(-3px);}
+.feature-icon{width:48px;height:48px;background:var(--navy);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.feature-icon svg{width:22px;height:22px;}
+.feature-card h3{font-size:18px;font-weight:700;font-family:'DM Sans',sans-serif;color:var(--navy);margin-bottom:8px;}
+.feature-card p{font-size:15px;color:var(--muted);line-height:1.55;}
+.feature-tag{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--copper);background:var(--copper-bg);border:1px solid var(--copper-border);padding:3px 10px;border-radius:4px;margin-bottom:12px;}
+
+/* STEPS — 4 columns */
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;position:relative;}
+.steps-grid::before{content:'';position:absolute;top:36px;left:10%;right:10%;height:2px;background:var(--border);z-index:0;}
+.step-card{text-align:center;position:relative;z-index:1;}
+.step-num{width:56px;height:56px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;margin:0 auto 18px;font-family:'Source Serif 4',serif;box-shadow:0 4px 12px rgba(26,46,74,.2);}
+.step-card h3{font-size:19px;font-weight:700;font-family:'DM Sans',sans-serif;color:var(--navy);margin-bottom:10px;}
+.step-card p{font-size:15px;color:var(--muted);line-height:1.55;max-width:280px;margin:0 auto;}
+
+/* VYSTUPY — 2x2 */
+.vystupy-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.vystup-item{display:flex;gap:16px;padding:24px;background:var(--white);border:1px solid var(--border);border-radius:12px;border-left:4px solid var(--navy);transition:box-shadow .2s;}
+.vystup-item:hover{box-shadow:0 4px 16px rgba(0,0,0,.06);}
+.vystup-icon{width:42px;height:42px;min-width:42px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.vystup-icon svg{width:20px;height:20px;}
+.vystup-item h3{font-size:17px;font-weight:700;font-family:'DM Sans',sans-serif;color:var(--navy);margin-bottom:6px;}
+.vystup-item p{font-size:15px;color:var(--muted);line-height:1.5;}
+
+/* CTA */
+.cta-section{background:var(--navy);padding:clamp(56px, 7vw, 96px) 0;text-align:center;}
+.cta-section h2{color:#fff;font-size:clamp(28px, 3vw, 40px);margin-bottom:16px;}
+.cta-section p{color:rgba(255,255,255,.5);font-size:17px;margin-bottom:36px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.6;}
+.cta-price{color:rgba(255,255,255,.4);font-size:14px;margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.5;font-style:italic;}
+.cta-contacts{display:flex;justify-content:center;gap:48px;margin-top:32px;}
+.cta-person{text-align:left;}
+.cta-person strong{color:#fff;font-size:14px;display:block;margin-bottom:2px;}
+.cta-person span{font-size:12px;color:rgba(255,255,255,.45);display:block;margin-bottom:2px;}
+.cta-person a{color:var(--copper);text-decoration:none;font-size:13px;font-weight:500;}
+.cta-person a:hover{text-decoration:underline;}
+
+/* FOOTER */
+.footer{background:var(--white);padding:24px 0;border-top:1px solid var(--border);}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;}
+.footer-logo{height:42px;}
+.footer-text{font-size:12px;color:var(--muted);}
+
+/* MOBILE MENU */
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px;margin-right:-8px;min-width:44px;min-height:44px;align-items:center;justify-content:center;}
+.nav-toggle svg{width:24px;height:24px;stroke:var(--navy);stroke-width:2;}
+.nav-links.open{display:flex !important;animation:fadeIn .2s ease-out;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+
+/* RESPONSIVE — TABLET */
+@media(max-width:960px){
+  .container{padding:0 24px;}
+  .hero{padding:120px 0 60px;}
+  .hero-grid{grid-template-columns:1fr;gap:32px;}
+  .hero h1{font-size:38px;line-height:1.1;}
+  .hero-sub{max-width:100%;}
+  .hero-stats{grid-template-columns:repeat(4,1fr);gap:10px;}
+  .problems-grid{grid-template-columns:1fr 1fr;gap:12px;}
+  .features-grid{grid-template-columns:1fr 1fr;gap:12px;}
+  .steps-grid{grid-template-columns:repeat(4,1fr);gap:16px;}
+  .steps-grid::before{display:none;}
+  .vystupy-grid{grid-template-columns:1fr;}
+  .section{padding:60px 0;}
+  .nav-links{display:none;}
+  .nav-toggle{display:flex;}
+}
+
+/* RESPONSIVE — MOBILE */
+@media(max-width:640px){
+  .container{padding:0 16px;}
+  .nav-inner{padding:14px 16px;}
+  .nav-logo{height:28px;}
+  .nav-links{
+    display:none;
+    position:fixed;top:0;left:0;right:0;bottom:0;
+    background:var(--navy);
+    flex-direction:column;align-items:center;justify-content:center;
+    gap:24px;z-index:200;
+  }
+  .nav-links a{font-size:18px;color:rgba(255,255,255,.8);}
+  .nav-links .nav-cta{font-size:16px;padding:12px 32px;}
+  .nav-toggle{z-index:300;}
+  .hero{padding:100px 0 48px;}
+  .hero h1{font-size:28px;line-height:1.15;}
+  .hero-sub{font-size:14px;}
+  .hero-actions{flex-direction:column;gap:10px;}
+  .btn-primary,.btn-secondary{text-align:center;padding:14px 24px;font-size:15px;width:100%;}
+  .hero-stats{grid-template-columns:1fr 1fr;gap:8px;}
+  .stat{padding:14px 12px;}
+  .stat-val{font-size:18px;}
+  .stat-label{font-size:11px;}
+  .section{padding:48px 0;}
+  .section h2{font-size:24px;}
+  .section-sub{font-size:14px;margin-bottom:28px;}
+  .section-eyebrow{font-size:11px;margin-bottom:10px;}
+  .problems-grid{grid-template-columns:1fr;gap:10px;}
+  .problem-card{padding:20px 18px;}
+  .problem-icon{width:36px;height:36px;}
+  .problem-card h3{font-size:15px;}
+  .problem-card p{font-size:13px;}
+  .features-grid{grid-template-columns:1fr;gap:10px;}
+  .feature-card{padding:20px 18px;}
+  .feature-icon{width:36px;height:36px;}
+  .feature-icon svg{width:18px;height:18px;}
+  .feature-card h3{font-size:14px;}
+  .feature-card p{font-size:13px;}
+  .feature-tag{font-size:10px;padding:2px 8px;}
+  .steps-grid{grid-template-columns:1fr;gap:16px;}
+  .step-card{text-align:left;display:flex;align-items:flex-start;gap:14px;}
+  .step-num{margin:0;min-width:40px;width:40px;height:40px;font-size:18px;}
+  .step-card h3{font-size:15px;margin-bottom:4px;}
+  .step-card p{max-width:100%;font-size:13px;}
+  .vystupy-grid{grid-template-columns:1fr;gap:10px;}
+  .vystup-item{padding:16px 14px;gap:12px;}
+  .vystup-icon{width:32px;height:32px;min-width:32px;}
+  .vystup-item h3{font-size:14px;}
+  .vystup-item p{font-size:13px;}
+  .cta-section{padding:48px 0;}
+  .cta-section h2{font-size:24px;}
+  .cta-section p{font-size:14px;}
+  .cta-price{font-size:13px;}
+  .cta-contacts{flex-direction:column;align-items:center;gap:20px;}
+  .cta-person{text-align:center;}
+  .footer-inner{flex-direction:column;gap:8px;text-align:center;}
+  .footer-text{font-size:11px;}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Přejít na obsah</a>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <img src="ab-ante-logo.png" alt="AB ANTE" class="nav-logo">
+    <div class="nav-links" id="navLinks">
+      <a href="#problem">Proč diagnostika</a>
+      <a href="#moduly">Co analyzujeme</a>
+      <a href="#jak-to-funguje">Jak to probíhá</a>
+      <a href="#vystupy">Výstupy</a>
+      <a href="#kontakt" class="nav-cta">Domluvit konzultaci</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <svg id="iconHamburger" viewBox="0 0 24 24" fill="none" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg id="iconClose" viewBox="0 0 24 24" fill="none" stroke-linecap="round" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<main id="main">
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow">Firemní diagnostika · AB ANTE</div>
+        <h1>Ekonomika firmy neroste? Ukážeme vám <em>proč — a co s tím.</em></h1>
+        <p class="hero-sub">Nezávislá provozní a ekonomická diagnostika pro majitele malých a středních firem. Pojmenujeme příčiny, zmapujeme rizika a navrhneme konkrétní opatření.</p>
+        <div class="hero-actions">
+          <a href="#kontakt" class="btn-primary">Domluvit konzultaci →</a>
+          <a href="#jak-to-funguje" class="btn-secondary">Jak diagnostika probíhá</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-val">NDA</div>
+          <div class="stat-label">důvěrnost od prvního kontaktu</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">Data + expert</div>
+          <div class="stat-label">AI analýza, lidská interpretace</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">Nezávislý pohled</div>
+          <div class="stat-label">diagnostika zvenčí, bez vazeb</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">Bez šablon</div>
+          <div class="stat-label">každá firma individuálně</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section" id="problem">
+  <div class="container">
+    <div class="section-eyebrow">Současný stav</div>
+    <h2>Tušíte to, ale nevidíte příčiny</h2>
+    <p class="section-sub">Firma funguje, ale ekonomika dlouhodobě neroste nebo se zhoršuje. Majitel problém většinou tuší — ale protože je denně v provozu, nedokáže pojmenovat příčiny.</p>
+    <div class="problems-grid">
+      <div class="problem-card">
+        <div class="problem-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4722A" stroke-width="2" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <h3>Marže klesají, náklady rostou</h3>
+        <p>Zákazníků ubývá nebo se mění, co a za kolik kupují. Náklady rostou — a není jasné proč.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4722A" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <h3>Rozhodování bez podkladů</h3>
+        <p>Chybí systematický přehled o závazcích, cash flow a nákladové struktuře. Závazky se platí pozdě, cash flow stačí na měsíc dva dopředu.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4722A" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Čas běží — prostor se zmenšuje</h3>
+        <p>Čím déle čekáte, tím méně možností. Diagnostika má největší hodnotu právě v okně mezi tušením a krizí.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULY -->
+<section class="section alt" id="moduly">
+  <div class="container">
+    <div class="section-eyebrow">Co analyzujeme</div>
+    <h2>Pět modulů od provozních dat po konkrétní kroky</h2>
+    <p class="section-sub">Každá firma je jiná. Nepracujeme podle šablon. Nejdřív pochopíme konkrétní podmínky a dynamiku provozu — teprve na základě toho stavíme analýzu a doporučení.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-tag">Jádro</div>
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+        <h3>A. Provozní a ekonomická analýza</h3>
+        <p>Nákladové položky, mzdový fond, smluvní závazky, provozní závislosti. Co firmu stojí peníze, kde jsou úspory, co je strukturální.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></div>
+        <h3>B. Obchodní diagnostika</h3>
+        <p>Sortiment, produktové portfolio, cílová skupina, tržní pozice. Návštěvnost, sezónnost, marže. Konkurence — veřejné zdroje i fyzické ověření.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+        <h3>C. Cash flow a závazková mapa</h3>
+        <p>Peněžní toky, splatnosti pohledávek a závazků, prioritizace věřitelů. Přehledná mapa s časovou osou.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>D. Právní a daňová rizika</h3>
+        <p>Exekuční, daňová a smluvní rizika. Odpovědnost jednatele. Kategorizace: kritická, významná, drobná.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <h3>E. Scénáře a doporučení</h3>
+        <p>Varianty dalšího postupu s konkrétními kroky — krátkodobé, střednědobé, dlouhodobé. Každý scénář s předpoklady, čísly a měřitelnými cíli.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JAK TO PROBÍHÁ -->
+<section class="section" id="jak-to-funguje">
+  <div class="container">
+    <div class="section-eyebrow">Průběh</div>
+    <h2>Od prvního kontaktu k rozhodnutí</h2>
+    <p class="section-sub">Doba závisí na rozsahu — od dvou týdnů u menších firem po několik týdnů u složitějších případů.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Briefing</h3>
+          <p>Úvodní schůzka, upřesnění rozsahu, podpis NDA, seznam potřebných podkladů.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Sběr dat a analýza</h3>
+          <p>Klient předá podklady. Paralelně zajistíme veřejné registry. Křížová kontrola provozních dat s veřejnými zdroji.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div>
+          <h3>Expertní review</h3>
+          <p>Senior konzultant ověří závěry, doplní kontext z reálných projektů, zformuluje scénáře.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <div>
+          <h3>Společná schůzka</h3>
+          <p>Prezentace závěrů, diskuse variant, dohoda na dalších krocích. Kdo, co a do kdy udělá.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VÝSTUPY -->
+<section class="section alt" id="vystupy">
+  <div class="container">
+    <div class="section-eyebrow">Co dostanete</div>
+    <h2>Rozhodovací podklad, ne akademická studie</h2>
+    <p class="section-sub">Výstupem je podklad pro rozhodnutí — s čísly, pojmenovanými příčinami a konkrétními kroky. Na základě analýzy formulujeme jednoznačná doporučení.</p>
+    <div class="vystupy-grid">
+      <div class="vystup-item">
+        <div class="vystup-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <div>
+          <h3>Report</h3>
+          <p>Provozní a ekonomická analýza, pojmenované příčiny problémů, konkrétní čísla a srovnání.</p>
+        </div>
+      </div>
+      <div class="vystup-item">
+        <div class="vystup-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+        <div>
+          <h3>Risk registr</h3>
+          <p>Právní, daňová a provozní rizika. Kategorizace: kritická, významná, drobná. Ke každému riziku doporučený krok.</p>
+        </div>
+      </div>
+      <div class="vystup-item">
+        <div class="vystup-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div>
+          <h3>Scénáře s konkrétními kroky</h3>
+          <p>Varianty dalšího postupu — krátkodobé, střednědobé, dlouhodobé. Co udělat, v jakém pořadí, s jakým dopadem.</p>
+        </div>
+      </div>
+      <div class="vystup-item">
+        <div class="vystup-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div>
+          <h3>Společná schůzka</h3>
+          <p>Závěry probereme osobně, prodiskutujeme varianty a dohodneme další postup. Ne jen dokument v e-mailu.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / KONTAKT -->
+<section class="cta-section" id="kontakt">
+  <div class="container">
+    <h2>Domluvit konzultaci</h2>
+    <p>Úvodní schůzka je nezávazná. Dohodneme rozsah, podmínky a cenu — vždy předem, před zahájením práce.</p>
+    <p class="cta-price">Cenu stanovujeme individuálně podle reálného rozsahu služeb a konkrétních potřeb firmy.</p>
+    <a href="mailto:info@ab-ante.cz" class="btn-primary" style="font-size:17px;padding:16px 40px;">Napsat nám →</a>
+    <div class="cta-contacts">
+      <div class="cta-person">
+        <strong>Václav Jankovský</strong>
+        <span>+420 775 262 645</span>
+        <a href="mailto:vaclav@ab-ante.cz">vaclav@ab-ante.cz</a>
+      </div>
+      <div class="cta-person">
+        <strong>Jiří Žemlička</strong>
+        <span>+420 602 162 043</span>
+        <a href="mailto:jirka@ab-ante.cz">jirka@ab-ante.cz</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container-wide footer-inner">
+    <img src="ab-ante-logo.png" alt="AB ANTE" class="footer-logo">
+    <span class="footer-text">&copy; 2026 AB ANTE s.r.o. &middot; Perucká 61/13, 120 00 Praha 2 &middot; <a href="https://ab-ante.cz" style="color:var(--muted);text-decoration:none;">ab-ante.cz</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  var toggle=document.getElementById('navToggle');
+  var links=document.getElementById('navLinks');
+  var iconHamburger=document.getElementById('iconHamburger');
+  var iconClose=document.getElementById('iconClose');
+  var menuOpen=false;
+
+  window.addEventListener('scroll',function(){
+    nav.classList.toggle('scrolled',window.scrollY>40);
+  },{passive:true});
+
+  function setMenuState(open){
+    menuOpen=open;
+    links.classList.toggle('open',open);
+    iconHamburger.style.display=open?'none':'block';
+    iconClose.style.display=open?'block':'none';
+  }
+
+  toggle.addEventListener('click',function(){
+    setMenuState(!menuOpen);
+  });
+
+  links.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){
+      if(menuOpen) setMenuState(false);
+    });
+  });
+})();
+</script>
+</body>
+</html>
